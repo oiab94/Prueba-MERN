@@ -11,7 +11,7 @@ const setUser = (req, res) => {
 
 			user.create({firstName, lastName, email, password})
 				.then(user => res.json(user))
-				.catch(err => res.json(err))
+				.catch(err => res.status(400).json(err))
 		})
 		.catch(err => res.json(err))
 }
