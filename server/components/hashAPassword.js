@@ -2,6 +2,9 @@ const bcrypt = require("bcrypt");
 
 // * Creamos una función asincrona que retornara la clave hash
 const hashPassword = async (password) => {
+	if(password === "") 
+		return ;
+
 	return await bcrypt.hash(password, 10);
 }
 
