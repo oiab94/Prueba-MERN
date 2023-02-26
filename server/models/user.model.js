@@ -29,6 +29,17 @@ userSchema.pre("save", async function(next) {
 	next();
 })
 
+// * Confirmación de password
+userSchema.virtual("confirmPassword")
+	.get( function() { return confirmPassword } )
+	.set( function(value){ confirmPassword = value } );
+
+userSchema.pre("validate", function(next){
+	if(this.password !== this.confirmPassword)
+		this.invalidate("confirmPassword", "Password are not equal")	
+	next();
+})
+
 // * Creamos el modelo
 module.exports = mongoose.model("user", userSchema);
 
