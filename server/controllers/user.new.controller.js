@@ -20,9 +20,9 @@ const handleErrros = (err) => {
 
 // * POST un nuevo user
 const setUser = (req, res) => {
-	const {firstName, lastName, email, password} = req.body;
+	const {firstName, lastName, email, password, confirmPassword} = req.body;
 
-	user.create({firstName, lastName, email,password})
+	user.create({firstName, lastName, email,password, confirmPassword})
 		.then(
 			user => {
 				res.status(201).json(user)
