@@ -1,9 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css"
+import Home from "./routes/Home";
 
 function App() {
   return (
     <>
-      <h1>Hello</h1>
+    <Home />
     </>
   );
 }
