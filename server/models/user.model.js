@@ -20,5 +20,19 @@ const userSchema = new mongoose.Schema({
 	}
 }, { timestamps:true })
 
+
+
 // * Creamos el modelo
 module.exports = mongoose.model("user", userSchema);
+
+// // *Dispara una función después de guardar en la DB
+// userSchema.post("save", function(doc, next) {
+// 	console.log("New user was created",doc);
+// 	next();
+// })
+
+// // *Dispara una función antes de guardar en la DB
+// userSchema.pre("save",function(next) {
+// 	console.log("User will be created & saved", this);
+// 	next();
+// })
