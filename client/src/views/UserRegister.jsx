@@ -8,16 +8,17 @@ const UserRegister = () => {
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] =useState("");
-	const [otherPassword, setOtherPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
 	const [emailError, setEmailError] = useState("");
 	const [passwordError, setPasswordError] = useState("");
+	const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
 		axios.post(
 			"http://localhost:8000/api/setUser",
-			{firstName, lastName, email, password}
+			{firstName, lastName, email, password, confirmPassword}
 		)
 			.then(res => console.log(res))
 			// * Guardamos los errores recibidos del servidor
@@ -27,6 +28,7 @@ const UserRegister = () => {
 
 					setEmailError(error.email);
 					setPasswordError(error.password);
+					setConfirmPasswordError(error.confirmPassword)
 					setFormValid(true)
 				})
 	}
@@ -84,9 +86,17 @@ const UserRegister = () => {
 			<Form.Group className="mb-3">
 				<Form.Label>Confirm Password:</Form.Label>
 				<Form.Control 
-					required 
+					required
 					type="password"
-					onChange={e => setOtherPassword(e.target.value)} />
+					isInvalid={
+						confirmPassword !== undefined ? 
+							true :
+							undefined}
+					onChange={e => setConfirmPassword(e.target.value)} />
+				<Form.Control.Feedback
+					type="invalid">
+						{confirmPasswordError}
+				</Form.Control.Feedback>			
 			</Form.Group>
 
 			<Button type="submit">Enviar Form</Button>
