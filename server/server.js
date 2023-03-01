@@ -18,3 +18,6 @@ app.use(cors());
 
 // * Conexión a la DB
 require("./configs/mongoose.config");
+
+// * Enviamos las peticiones a nuestra API
+require("./routes/user.routes")(app);
