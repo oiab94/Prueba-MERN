@@ -1,5 +1,6 @@
 const { errorLog } = require('../components/displayLog');
 const User = require('../models/user.model');
+const handleErrors = require('../components/handleErrors');
 
 // * Funciones GET
 const signup_get = (req, res) => {
@@ -22,8 +23,8 @@ const signup_post = async (request, response) => {
 		response.status(201).json(user);
 
 	} catch (err) {
-		errorLog(err);
-		response.status(400).json("error, user no cretated");
+		const errors = handleErrors(err);
+		response.status(400).json(errors);
 	}
 }
 const login_post = async (req, res) => {
