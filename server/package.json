@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Desafío: Crear una aplicación de críticas de peliculas donde los usuarios puedan agregar películas y dejar reseñas en ella",
+  "description": "Desafío: Test de una aplicación de formulario",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
@@ -18,11 +18,10 @@
   },
   "homepage": "https://github.com/oiab94/CodingDojo-Exam-MEN#readme",
   "dependencies": {
-    "bcrypt": "^5.1.0",
     "chalk": "^4.1.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mongoose": "^6.9.2",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
   }
 }
