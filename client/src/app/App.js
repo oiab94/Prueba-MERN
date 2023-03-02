@@ -1,12 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import LoginForm from "./view/LoginForm";
-import RegisterForm from "./view/RegisterForm";
+import { RouterProvider } from "react-router-dom"
+import router from "./routes/User.routes";
 
 function App() {
   return (
     <>
-      <RegisterForm />
-      <LoginForm />
+    <RouterProvider router={router} />
     </>
   );
 }
