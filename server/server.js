@@ -6,6 +6,11 @@ const cookieParser = require("cookie-parser");
 // * Inicia express
 const app = express();
 const port = 8000;
+const whiteList = ["http://localhost:3000"]
+const corsOptions = {
+	origin: whiteList,
+	credentials: true
+}
 
 app.listen(
 	port,
@@ -15,7 +20,7 @@ app.listen(
 // * Se habilita MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser());
 
 // * Conexión a la DB
