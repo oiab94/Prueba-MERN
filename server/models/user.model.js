@@ -26,6 +26,28 @@ userSchema.pre("save", async function (next) {
 	next();
 })
 
+// * Método estático para login
+userSchema.statics.login = async function (email, password) {
+	// * Retornar un usuario con el mismo email
+	const user = await this.findOne({email})
+
+	// * Verificamos si existe ese usuario con ese email
+	if(user){
+		// * Verificamos si las contraseñas son iguales
+		const auth = await bcrypt.compare(password, user.password)
+		
+		// * Si son iguales retornamos el usuario
+		if(auth){
+			return user;
+		}
+		// * Si no son iguales arrojamos el error
+		throw Error("Incorrect password")
+	}
+	// * Si no existe arrojamos un error
+	throw Error("Incorrect email");
+
+}
+
 const User = mongoose.model("user", userSchema);
 
 module.exports = User;
