@@ -1,6 +1,7 @@
 const log = require("./components/displayLog");
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 // * Inicia express
 const app = express();
@@ -15,9 +16,15 @@ app.listen(
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
+app.use(cookieParser());
 
 // * Conexión a la DB
 require("./configs/mongoose.config");
 
 // * Enviamos las peticiones a nuestra API
 require("./routes/user.routes")(app);
+
+// // * Prueba de Cookies
+// const {setCookies, readCookies} = require("./components/howToUseCookies")
+// setCookies(app);
+// readCookies(app);
