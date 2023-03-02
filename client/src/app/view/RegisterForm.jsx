@@ -1,17 +1,22 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/Container"
+import Container from "react-bootstrap/Container";
+import axios from "axios";
+
+const url = "http://localhost:8000/api/signup";
 
 function RegisterForm() {
 	const handlerSubmit = (e) => {
-		const email = e.target["email"];
-		const password = e.target["password"];
+		const email = e.target["email"].value;
+		const password = e.target["password"].value;
 		e.preventDefault();
 
-
-		// Obtener los valores
-		console.log(email.value);
-		console.log(password.value);
+		// Envia los datos a la API
+		axios.post(url, { 
+			email, password 
+		})
+		.then(response => console.log(response))
+		.catch(error => console.log(error))
 	}
 
 	return (
