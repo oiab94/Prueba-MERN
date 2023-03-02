@@ -14,9 +14,13 @@ function RegisterForm() {
 		// Envia los datos a la API
 		axios.post(url, { 
 			email, password 
+		}, {withCredentials: true})
+		.then(function (response) {
+			console.log(response);
 		})
-		.then(response => console.log(response))
-		.catch(error => console.log(error))
+		.catch(function (error) {
+			console.log(error);
+		})
 	}
 
 	return (
