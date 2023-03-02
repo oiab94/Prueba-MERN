@@ -20,7 +20,7 @@ const signup_post = async (request, response) => {
 		// * Esperamos a tener resultado del servidor
 		const user = await User.create({ email, password});	
 		const token = createAToken(user._id);
-		const maxAge = 10 * 60 * 1000
+		const maxAge = 1 * 24 * 60 //(1 dia)
 
 		// * Tras la respuesta continuamos
 		response.cookie("jwt", token, { httpOnly: true, maxAge});
@@ -31,7 +31,22 @@ const signup_post = async (request, response) => {
 	}
 }
 const login_post = async (req, res) => {
-	console.log("login_POST");
+	const { email, password } = req.body;
+	const maxAge = 1 * 24 * 60 //(1 dia)
+
+	try {
+		// * Esperamos a tener resultado del servidor
+		const user = await User.login(email, password);
+		const token = createAToken(user._id);
+		
+		// * Tras la respuesta continuamos
+		res.cookie("login", token, { httpOnly: true, maxAge});
+		res.status(201).json(user);
+	} catch (error) {
+		const errors = handleErrors(error);
+
+		res.status(400).json(errors);
+	}
 }
 
 // * Exportacion de modulos
