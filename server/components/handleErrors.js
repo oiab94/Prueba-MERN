@@ -18,5 +18,11 @@ module.exports = (err) => {
 		error.email = "Thats email is already registered"
 	}
 
+	// * Controlamos errores de Login
+	if(err.message === "Incorrect email") 
+		error.email = "That email is not registered"
+	if(err.message === "Incorrect password")
+		error.password = "That password is incorrect"
+
 	return error;
 }
